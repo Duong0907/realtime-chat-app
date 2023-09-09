@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room</title>
+    <link rel="stylesheet" href="static/css/room.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="items">
+            <div class="items-head">
+                <p>CREATE A ROOM</p>
+                <hr>
+            </div>
+
+            <div class="items-body">
+                <!-- <div class="items-body-content"> -->
+                    <input id="room-input" type="text">
+                    <!-- <i class="fa fa-angle-right"></i> -->
+                <!-- </div> -->
+            </div>
+            <div class="items-head">
+                <p>JOIN A ROOM</p>
+                <hr>
+            </div>
+
+            <div class="items-body">
+                <!-- <div class="items-body-content">
+                    <span>Room 1</span>
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="items-body-content">
+                    <span>Room 2</span>
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="items-body-content">
+                    <span>Room 3</span>
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="items-body-content">
+                    <span>Room 4</span>
+                    <i class="fa fa-angle-right"></i> -->
+                {{ range .Rooms }}
+                    <div class="items-body-content">
+                        <span class="room-id" style="display:none">{{ .ID }}</span>
+                        <span class="room-name">{{ .Name }}</span>
+                        <!-- <i class="fa fa-angle-right"></i> -->
+                    </div>
+                {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/javascript/room.js"></script>
+
+</body>
+
+</html>
