@@ -26,5 +26,5 @@ func main() {
 
 
 	router.InitRouter(userPresentation, wsPresentation)
-	router.Start("0.0.0.0:8080")
+	router.Start("localhost:8080")
 }

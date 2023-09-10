@@ -1,12 +1,10 @@
 package ws
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
-	// "go-chat/internal/user"
 )
 
 type Handler struct {
@@ -32,6 +30,23 @@ func (h *Handler) CreateRoom(c *gin.Context) {
 		})
 		return
 	}
+
+	if req.Name == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Room Name"})
+		return
+	}
+	
+	existed := false
+	for _, roomName := range h.hub.Rooms {
+		if roomName.Name == req.Name {
+			existed = true
+		}
+	}
+	if existed {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Existed Room Name"})
+		return
+	}
+
 
 	h.hub.Rooms[req.ID] = &Room{
 		ID:      req.ID,
@@ -79,9 +94,7 @@ func (h *Handler) JoinRoom(c *gin.Context) {
 	}
 
 	defer func() {
-		log.Println("Closed connection")
 		h.hub.Unregister <- cl
-		conn.Close()
 	}()
 
 	// Register a client through the resgister channel

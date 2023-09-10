@@ -21,8 +21,7 @@ function newChatElement(username, message) {
             </span>
             <div class="chat-body clearfix">
                 <div class="header">
-                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>... mins
-                        ago</small>
+                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span> Just now</small>
                     <strong class="pull-right primary-font">${username}</strong>
                 </div>
                 <p>
@@ -43,7 +42,7 @@ function newChatElement(username, message) {
                 <div class="header">
                     <strong class="primary-font">${username}</strong> <small
                         class="pull-right text-muted">
-                        <span class="glyphicon glyphicon-time"></span>... mins ago</small>
+                        <span class="glyphicon glyphicon-time"></span>Just now</small>
                 </div>
                 <p>
                     ${message}
@@ -77,7 +76,8 @@ function sendMessage() {
 }
 
 sendBtn.onclick = function () {
-    sendMessage();
+    socket.close(1000);
+    window.location.href = "/"
 }
 
 messageInput.onkeydown = function (event) {
@@ -88,7 +88,6 @@ messageInput.onkeydown = function (event) {
 
 ///////////////// WEB SOCKET //////////////////
 
-console.log(roomID, currUserID, currUsername);
 socket = new WebSocket(`ws://localhost:8080/api/ws/joinRoom/${roomID}?userId=${currUserID}&username=${currUsername}`);
 console.log("Attempting Connection...");
 
@@ -101,7 +100,6 @@ socket.onclose = event => {
 };
 
 socket.onerror = error => {
-    socket.close();
     console.log("Socket Error: ", error);
 };
 
@@ -109,7 +107,3 @@ socket.onmessage = (event) => {
     var res = JSON.parse(event.data);
     newChatElement(res['username'], res['content']);
 }
-
-window.onunload = function () {
-    socket.close();
-};

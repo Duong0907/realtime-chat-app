@@ -52,7 +52,7 @@ type ChatInfo struct {
 	RoomID   string `json:"room_id"`
 }
 
-func (h *Presentation) RenderChatPage(c *gin.Context) {
+func (p *Presentation) RenderChatPage(c *gin.Context) {
 	tokenSTring, err := c.Cookie("jwt")
 	log.Println(tokenSTring)
 	if err != nil {
@@ -71,6 +71,19 @@ func (h *Presentation) RenderChatPage(c *gin.Context) {
 	info.UserID = claims.ID
 	info.RoomName = c.Query("room_name")
 	info.RoomID = c.Query("room_id")
+
+	existed := false
+	for _, r := range p.hub.Rooms {
+		if r.Name == info.RoomName && r.ID == info.RoomID {
+			existed = true 
+			break
+		}
+	}
+
+	if !existed {
+		c.Redirect(http.StatusSeeOther, "/")
+		return
+	}
 
 	log.Println(claims)
 

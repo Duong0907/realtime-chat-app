@@ -16,6 +16,8 @@
                 <hr>
             </div>
 
+            
+
             <div class="items-body">
                 <!-- <div class="items-body-content"> -->
                     <input id="room-input" type="text">
@@ -27,7 +29,7 @@
                 <hr>
             </div>
 
-            <div class="items-body">
+            <div id="room-list" class="items-body">
                 <!-- <div class="items-body-content">
                     <span>Room 1</span>
                     <i class="fa fa-angle-right"></i>
@@ -52,8 +54,17 @@
                 {{ end }}
                 </div>
             </div>
+
+            <div id="logout-btn" class="items-body">
+                <div class="items-body-content">
+                    <span><b>LOG OUT</b></span>
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
         </div>
     </div>
+
+    <ul class="notifications"></ul>
 
     <script src="static/javascript/room.js"></script>
 

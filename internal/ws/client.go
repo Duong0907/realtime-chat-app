@@ -44,7 +44,7 @@ func (c *Client) ReadMessage(hub *Hub) {
 		_, m, err := c.Conn.ReadMessage()
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				log.Printf("err: %v", err.Error())
+				log.Printf("error: %v", err.Error())
 			}
 			break
 		}
