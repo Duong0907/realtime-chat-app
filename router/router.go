@@ -1,9 +1,9 @@
 package router
 
 import (
+	"go-chat/internal/middleware"
 	"go-chat/internal/user"
 	"go-chat/internal/ws"
-	"go-chat/internal/middleware"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -24,7 +24,7 @@ func InitRouter(userPresentation *user.Presentation, wsPresentation *ws.Presenta
 	r.GET("/api/ws/joinRoom/:roomId", wsPresentation.Handler.JoinRoom)
 	r.GET("/api/ws/getRooms", wsPresentation.Handler.GetRooms)
 	r.GET("/api/ws/getClients/:roomId", wsPresentation.Handler.GetClients)
-	
+
 	r.Static("/static", "./static")
 	r.LoadHTMLGlob("template/*.html")
 

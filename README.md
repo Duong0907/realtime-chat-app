@@ -1,13 +1,9 @@
 # <p style="text-align: center;">Go Realtime Chat Server</p>
 
 ## Content
-- [Quick start](#quick-start)
 - [Architecture](#architecture)
 - [Features](#features)
 - [References](#references)
-## Quick start
-
-***// TODO***
 
 ## Architecture
 ### *1. This project is build in Go, conforming **Clean Architecture***
@@ -23,10 +19,5 @@
 
 ## Features: 
     - Log in, Log out, Sign up
-    - Get All Rooms, Get Room By ID
     - Create Room, Join Room, Send Message To Room
 
-
-
-## References: 
-[1] [Go Next TS Chat Project](https://github.com/dhij/go-next-ts_chat)
