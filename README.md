@@ -3,7 +3,6 @@
 ## Content
 - [Architecture](#architecture)
 - [Features](#features)
-- [References](#references)
 
 ## Architecture
 ### *1. This project is build in Go, conforming **Clean Architecture***
